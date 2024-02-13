@@ -47,6 +47,11 @@ namespace MilesCarRental.API
 
             //Injection of the services
             services.AddScoped<ICustomersService, CustomersService>();
+            services.AddScoped<ICustomersRepository, CustomersRepository>();
+
+            services.AddScoped<IVehiclesService, VehiclesService>();
+            services.AddScoped<IVehiclesRepository,VehiclesRepository>();
+            
 
         }
 

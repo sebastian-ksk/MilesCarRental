@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MilesCarRental.BLL.Services;
 
 namespace MilesCarRental.API.Controllers
 {
@@ -7,12 +8,19 @@ namespace MilesCarRental.API.Controllers
     public class VehiclesController : ControllerBase
     {
 
+        private readonly IVehiclesService _vehiclesService;
+
+        public VehiclesController(IVehiclesService vehiclesService)
+        {
+            _vehiclesService = vehiclesService;
+        }
+
         // GET: api/vehicles
         [HttpGet]
-        public IActionResult GetAvailableVehicles()
+        public async Task<IActionResult> GetAvailableVehicles()
         {
-            // Lógica para obtener y devolver vehículos disponibles
-            return Ok(/* colección de vehículos */);
+            var vehicles = await _vehiclesService.GetAllVehiclesAsync();
+            return Ok(vehicles);
         }
     }
 }
