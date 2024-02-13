@@ -7,5 +7,10 @@ namespace MilesCarRental.API.Controllers
     [ApiController]
     public class RentalsController : ControllerBase
     {
+        [HttpPost]
+        public IActionResult CreateRental([FromBody] string rental)
+        {
+            return Ok(/* lógica para crear un alquiler */);
+        }
     }
 }
