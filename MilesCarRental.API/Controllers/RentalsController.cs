@@ -1,6 +1,11 @@
-﻿namespace MilesCarRental.API.Controllers
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace MilesCarRental.API.Controllers
 {
-    public class RentalsController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RentalsController : ControllerBase
     {
     }
 }

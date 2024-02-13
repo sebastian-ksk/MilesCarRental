@@ -3,12 +3,16 @@
 namespace MilesCarRental.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class VehiclesController : ControllerBase
     {
-        public IActionResult GetVehicles()
+
+        // GET: api/vehicles
+        [HttpGet]
+        public IActionResult GetAvailableVehicles()
         {
-            return Ok("This is the list of vehicles");
+            // Lógica para obtener y devolver vehículos disponibles
+            return Ok(/* colección de vehículos */);
         }
     }
 }
