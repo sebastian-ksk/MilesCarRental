@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilesCarRental.BLL.Services;
 
 namespace MilesCarRental.API.Controllers
 {
@@ -7,12 +8,20 @@ namespace MilesCarRental.API.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
+        private readonly ICustomersService customersService;
+
+        public CustomersController(ICustomersService customersService)
+        {
+            this.customersService = customersService;
+        }
 
         // POST: api/customers
         [HttpPost]
         public IActionResult CreateCustomer([FromBody] string customer)
         {
-           return Ok(/* lógica para crear un cliente */);
+
+            var NewCostumer = customersService.CreateCostumerService();
+             return Ok(NewCostumer);
         }
 
         // GET: api/customers/{id}

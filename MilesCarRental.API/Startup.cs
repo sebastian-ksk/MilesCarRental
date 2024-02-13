@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using MilesCarRental.BLL.Services;
+using MilesCarRental.DAL.Context;
 using System.Text.Json.Serialization;
 
 namespace MilesCarRental.API
@@ -22,6 +24,8 @@ namespace MilesCarRental.API
             string connectionString = $"Server={server};Database={database};User Id={user};Password={password};TrustServerCertificate=true;";
 
             services.AddSingleton(connectionString);
+            //injection of the context to the services
+            services.AddDbContext<MainContext>(options => options.UseSqlServer(connectionString));
 
             services.AddControllers().AddJsonOptions(options =>
                 {
@@ -39,9 +43,10 @@ namespace MilesCarRental.API
             });
             services.AddMvcCore();
             services.AddEndpointsApiExplorer();
-
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+
+            //Injection of the services
+            services.AddScoped<ICustomersService, CustomersService>();
 
         }
 
