@@ -39,3 +39,41 @@ cada uno con propiedades específicas que reflejan los requisitos y característic
 - **Reservaciones y Alquileres a Clientes y Vehículos**: Relaciones muchos a uno, cada reserva o alquiler está vinculado a un único cliente y vehículo.
 
 ## B. Seudocódigo y Explicación de Proyecto
+
+
+## 2. Consulta SQL
+
+# Procedimientos Almacenados para Consultas Específicas
+
+A Continuacion se describe los procedimientos almacenados implementados en la base de datos 
+de la aplicación para realizar consultas específicas relacionadas con itinerarios, reservas
+y métodos de pago. Cada procedimiento almacenado tiene un objetivo claro y facilita la recuperación
+y gestión eficiente de la información dentro de la aplicación. Ubicado en el proyecto  `MilesCarRental.SQL`
+
+##  SP_CountItinerariesOverOneThousand
+
+
+- **Objetivo**: Contar usuarios con consultas de itinerarios > $1000.
+- **Variables**: `Valor` (itinerario).
+
+## SP_UsersOver40InBogotaWithReservations
+
+- **Objetivo**: Identificar usuarios > 40 años en Bogotá con reservas.
+- **Variables**: `Edad`, `Ciudad` (usuario).
+
+## SP_ReservationsByCreditCard
+
+- **Objetivo**: Listar reservas pagadas con tarjeta de crédito.
+- **Variables**: `MetodoPago` (reserva).
+
+## SP_ReservationsPayOnArrival
+
+- **Objetivo**: Listar reservas con pago en destino.
+- **Variables**: `MetodoPago` (reserva).
+
+## SP_ActiveAndCancelledReservations
+
+- **Objetivo**: Mostrar reservas activas y canceladas.
+- **Variables**: `Estado` (reserva).
+
+---
