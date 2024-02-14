@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Filters\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MilesCarRental.BLL\MilesCarRental.BLL.csproj" />
     <ProjectReference Include="..\MilesCarRental.DAL\MilesCarRental.DAL.csproj" />
   </ItemGroup>

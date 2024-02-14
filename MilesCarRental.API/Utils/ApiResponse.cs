@@ -4,7 +4,6 @@
     {
         public bool Success { get; set; }
         public string Message { get; set; }
-        // Cambio de 'object' a 'T' para hacer uso efectivo del tipo genérico
         public T Data { get; set; }
         public List<string> Errors { get; set; }
 
