@@ -10,28 +10,28 @@ namespace MilesCarRental.BLL.Services
 {
     public interface ICustomersRepository
     {
-        Task<Customer> CreateCustomersAsync();
+        Task<Customer> CreateAsync(Customer customer);
+        Task<Customer> GetByIdAsync(int id);
     }
-    public class CustomersRepository: ICustomersRepository
+
+    public class CustomersRepository : ICustomersRepository
     {
-        private readonly MainContext context;
-
-        public CustomersRepository(MainContext context)
+        private static List<Customer> _customers = new List<Customer>
         {
-            this.context = context;
-        }
+            new Customer { Id = 1, FirstName = "John", LastName = "Doe", Email = "john.doe@example.com" }
+        };
 
-
-        //create Customer method
-        public Task<Customer> CreateCustomersAsync()
+        public Task<Customer> CreateAsync(Customer customer)
         {
-            var customer = new Customer
-            {
-                FirstName = "John" 
-            };
+            customer.Id = _customers.Any() ? _customers.Max(c => c.Id) + 1 : 1;
+            _customers.Add(customer);
             return Task.FromResult(customer);
-
         }
 
+        public Task<Customer> GetByIdAsync(int id)
+        {
+            var customer = _customers.FirstOrDefault(c => c.Id == id);
+            return Task.FromResult(customer);
+        }
     }
 }

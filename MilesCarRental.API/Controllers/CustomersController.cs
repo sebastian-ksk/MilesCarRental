@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MilesCarRental.BLL.Services;
+using MilesCarRental.DAL.Models;
 
 namespace MilesCarRental.API.Controllers
 {
@@ -8,28 +9,31 @@ namespace MilesCarRental.API.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        private readonly ICustomersService customersService;
+        private readonly ICustomersService _customersService;
 
         public CustomersController(ICustomersService customersService)
         {
-            this.customersService = customersService;
+            _customersService = customersService;
         }
 
         // POST: api/customers
         [HttpPost]
-        public IActionResult CreateCustomer([FromBody] string customer)
+        public async Task<IActionResult> CreateCustomer([FromBody] Customer customer)
         {
-
-            var NewCostumer = customersService.CreateCostumerService();
-             return Ok(NewCostumer);
+            var newCustomer = await _customersService.CreateCustomerAsync(customer);
+            return Ok(newCustomer);
         }
 
         // GET: api/customers/{id}
         [HttpGet("{id}")]
-        public IActionResult GetCustomer(int id)
+        public async Task<IActionResult> GetCustomer(int id)
         {
-            // Lógica para obtener la información de un cliente específico
-            return Ok(/* cliente */);
+            var customer = await _customersService.GetCustomerByIdAsync(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            return Ok(customer);
         }
 
     }

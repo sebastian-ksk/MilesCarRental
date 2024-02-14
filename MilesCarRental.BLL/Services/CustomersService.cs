@@ -9,7 +9,8 @@ namespace MilesCarRental.BLL.Services
 {
     public interface ICustomersService
     {
-        Task<Customer> CreateCostumerService();
+        Task<Customer> CreateCustomerAsync(Customer customer);
+        Task<Customer> GetCustomerByIdAsync(int id);
     }
 
     public class CustomersService : ICustomersService
@@ -21,12 +22,14 @@ namespace MilesCarRental.BLL.Services
             _customersRepository = customersRepository;
         }
 
-
-        public Task<Customer> CreateCostumerService()
+        public Task<Customer> CreateCustomerAsync(Customer customer)
         {
-            return _customersRepository.CreateCustomersAsync();
+            return _customersRepository.CreateAsync(customer);
         }
 
-
+        public Task<Customer> GetCustomerByIdAsync(int id)
+        {
+            return _customersRepository.GetByIdAsync(id);
+        }
     }
 }
