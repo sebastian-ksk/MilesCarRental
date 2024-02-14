@@ -56,5 +56,13 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="StoredProcedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="StoredProcedures\A.SP_CountItinerariesOverOneThousand.sql" />
+    <Build Include="StoredProcedures\B.SP_UsersOver40InBogotaWithReservations.sql" />
+    <Build Include="StoredProcedures\C.SP_ReservationsByCreditCard.sql" />
+    <Build Include="StoredProcedures\D.SP_ReservationsPayOnArrival.sql" />
+    <Build Include="StoredProcedures\E.SP_ActiveAndCancelledReservations.sql" />
   </ItemGroup>
 </Project>

@@ -1,9 +1,22 @@
 # Miles Cart Rental API
 
-## Explciacioón de Seudocódigo
+API para el manejo de la renta de vehículos de la empresa Miles Car Rental.
 
 
-## Diagrama de Clases
+Autor: [Sebastian Castellanos  Patiño](https://github.com/sebastian-ksk)
+
+## Desarrollo de Prueba Tecnica
+
+## 1.
+La empresa Miles Car Rental requiere el desarrollo de una aplicación para el
+manejo de la renta de sus vehículos. Inicialmente, necesitan que cuando un
+cliente realice una solicitud de un vehículo, la aplicación liste las diferentes
+opciones que ofrece la compañía y que pueda almacenar la información del
+cliente, sus preferencias, así como realizar reservas y finalizar la renta del
+vehiculo. Dado que se encuentra en una fase exploratoria, se solicitan los
+siguientes entregables:
+
+## A. Diagrama de Clases
 
 El diagrama de clases de nuestro proyecto ilustra la estructura de los modelos y
 sus relaciones dentro de la aplicación de alquiler y reservación de vehículos.
@@ -25,3 +38,4 @@ cada uno con propiedades específicas que reflejan los requisitos y característic
 
 - **Reservaciones y Alquileres a Clientes y Vehículos**: Relaciones muchos a uno, cada reserva o alquiler está vinculado a un único cliente y vehículo.
 
+## B. Seudocódigo y Explicación de Proyecto
