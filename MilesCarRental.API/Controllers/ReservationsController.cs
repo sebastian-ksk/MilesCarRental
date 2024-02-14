@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilesCarRental.BLL.Services;
+using MilesCarRental.DAL.Models;
 
 namespace MilesCarRental.API.Controllers
 {
@@ -8,29 +10,40 @@ namespace MilesCarRental.API.Controllers
     public class ReservationsController : ControllerBase
     {
 
-        // POST: api/reservations
+        private readonly IReservationsService _reservationsService;
+
+        public ReservationsController(IReservationsService reservationsService)
+        {
+            _reservationsService = reservationsService;
+        }
+
         [HttpPost]
-        public IActionResult CreateReservation([FromBody] string reservation)
+        public async Task<IActionResult> CreateReservation([FromBody] Reservation reservation)
         {
-          
-            return Ok(/* lógica para crear una reserva */);
+            var createdReservation = await _reservationsService.CreateReservationAsync(reservation);
+            return Ok(createdReservation);
         }
 
-        // PUT: api/reservations/{id}/complete
         [HttpPut("{id}/complete")]
-        public IActionResult CompleteReservation(int id)
+        public async Task<IActionResult> CompleteReservation(int id)
         {
-          
-            return NoContent(); // O devolver el estado actualizado de la reserva
+            var completedReservation = await _reservationsService.CompleteReservationAsync(id);
+            if (completedReservation == null)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
 
-        // GET: api/reservations/{id}
         [HttpGet("{id}")]
-        public IActionResult GetReservation(int id)
+        public async Task<IActionResult> GetReservation(int id)
         {
-            // Lógica para obtener los detalles de una reserva específica
-            return Ok(/* reserva */);
+            var reservation = await _reservationsService.GetReservationAsync(id);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+            return Ok(reservation);
         }
-
     }
 }
