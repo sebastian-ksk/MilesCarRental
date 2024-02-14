@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using MilesCarRental.API.Middlewares;
 using MilesCarRental.BLL.Services;
 using MilesCarRental.DAL.Context;
 using System.Text.Json.Serialization;
@@ -76,7 +77,7 @@ namespace MilesCarRental.API
             app.UseAuthentication();
             app.UseAuthorization();
 
-
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -1,4 +1,5 @@
-﻿using MilesCarRental.DAL.Models;
+﻿using MilesCarRental.BLL.Exceptions;
+using MilesCarRental.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,25 +26,47 @@ namespace MilesCarRental.BLL.Services
             _reservationsRepository = reservationsRepository;
         }
 
-        public Task<Reservation> CreateReservationAsync(Reservation reservation)
+        public async Task<Reservation> CreateReservationAsync(Reservation reservation)
         {
-            return _reservationsRepository.CreateAsync(reservation);
+            try
+            {
+                return await _reservationsRepository.CreateAsync(reservation);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException("Error creating the reservation.", ex);
+            }
         }
 
         public async Task<Reservation> CompleteReservationAsync(int id)
         {
-            var reservation = await _reservationsRepository.GetByIdAsync(id);
-            if (reservation != null)
+            try
             {
-                reservation.Status = "Completed";
-                await _reservationsRepository.UpdateAsync(reservation);
+                var reservation = await _reservationsRepository.GetByIdAsync(id);
+                if (reservation != null)
+                {
+                    reservation.Status = "Completed";
+                    await _reservationsRepository.UpdateAsync(reservation);
+                }
+                return reservation;
             }
-            return reservation;
+            catch (Exception ex)
+            {
+                throw new BusinessException("Error completing the reservation.", ex);
+            }
         }
 
-        public Task<Reservation> GetReservationAsync(int id)
+        public async Task<Reservation> GetReservationAsync(int id)
         {
-            return _reservationsRepository.GetByIdAsync(id);
+            try
+            {
+                return await _reservationsRepository.GetByIdAsync(id);
+            }
+            catch (Exception ex)
+            {
+   
+                throw new BusinessException("Error obtaining reservation.", ex);
+            }
         }
     }
 }

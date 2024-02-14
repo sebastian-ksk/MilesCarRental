@@ -1,4 +1,5 @@
-﻿using MilesCarRental.DAL.Models;
+﻿using MilesCarRental.DAL.Exceptions;
+using MilesCarRental.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,28 +24,49 @@ namespace MilesCarRental.BLL.Services
 
         public Task<Reservation> CreateAsync(Reservation reservation)
         {
-            reservation.Id = _reservations.Any() ? _reservations.Max(r => r.Id) + 1 : 1;
-            _reservations.Add(reservation);
-            return Task.FromResult(reservation);
+            try
+            {
+                reservation.Id = _reservations.Any() ? _reservations.Max(r => r.Id) + 1 : 1;
+                _reservations.Add(reservation);
+                return Task.FromResult(reservation);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException("An error occurred while creating the reservation.", ex);
+            }
         }
 
         public Task<Reservation> GetByIdAsync(int id)
         {
-            var reservation = _reservations.FirstOrDefault(r => r.Id == id);
-            return Task.FromResult(reservation);
+            try
+            {
+                var reservation = _reservations.FirstOrDefault(r => r.Id == id) ;
+                return Task.FromResult(reservation);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException("An error occurred while retrieving the reservation.", ex);
+            }
         }
 
         public Task<Reservation> UpdateAsync(Reservation updatedReservation)
         {
-            // Simula la actualización de una reserva
-            var reservation = _reservations.FirstOrDefault(r => r.Id == updatedReservation.Id);
-            if (reservation != null)
+            try
             {
-                _reservations.Remove(reservation);
-                _reservations.Add(updatedReservation);
-                return Task.FromResult(updatedReservation);
+                var reservation = _reservations.FirstOrDefault(r => r.Id == updatedReservation.Id);
+                if (reservation != null)
+                {
+                    _reservations.Remove(reservation);
+                    _reservations.Add(updatedReservation);
+                    return Task.FromResult(updatedReservation);
+                }
+                return Task.FromResult<Reservation>(null);
             }
-            return Task.FromResult<Reservation>(null);
+            catch (Exception ex)
+            {
+                throw new DataAccessException("An error occurred while updating the reservation.", ex);
+            }
         }
+
     }
 }

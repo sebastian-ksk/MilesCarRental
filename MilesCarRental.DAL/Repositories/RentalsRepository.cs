@@ -1,4 +1,5 @@
-﻿using MilesCarRental.DAL.Models;
+﻿using MilesCarRental.DAL.Exceptions;
+using MilesCarRental.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,17 @@ namespace MilesCarRental.BLL.Services
 
         public Task<Rental> CreateAsync(Rental rental)
         {
-            rental.Id = _rentals.Any() ? _rentals.Max(r => r.Id) + 1 : 1;
-            _rentals.Add(rental);
-            return Task.FromResult(rental);
+            try
+            {
+                rental.Id = _rentals.Any() ? _rentals.Max(r => r.Id) + 1 : 1;
+                _rentals.Add(rental);
+                return Task.FromResult(rental);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException("An error occurred while creating the rental.", ex);
+            }
         }
+
     }
 }

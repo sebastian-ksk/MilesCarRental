@@ -1,4 +1,5 @@
-﻿using MilesCarRental.DAL.Models;
+﻿using MilesCarRental.BLL.Exceptions;
+using MilesCarRental.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +25,27 @@ namespace MilesCarRental.BLL.Services
 
         public Task<Customer> CreateCustomerAsync(Customer customer)
         {
-            return _customersRepository.CreateAsync(customer);
+            try
+            {
+                return _customersRepository.CreateAsync(customer);
+
+            }catch(Exception ex)
+            {
+                throw new BusinessException("Error creating customer", ex);
+            }
+            
         }
 
         public Task<Customer> GetCustomerByIdAsync(int id)
         {
-            return _customersRepository.GetByIdAsync(id);
+            try
+            {
+                return _customersRepository.GetByIdAsync(id);
+            }
+            catch(Exception ex)
+            {
+                throw new BusinessException("Error getting customer", ex);
+            }
         }
     }
 }

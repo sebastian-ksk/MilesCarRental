@@ -1,4 +1,5 @@
 ﻿using MilesCarRental.DAL.Context;
+using MilesCarRental.DAL.Exceptions;
 using MilesCarRental.DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,10 @@ namespace MilesCarRental.BLL.Services
         public   Task<IEnumerable<Vehicle>> GetAllAsync()
         {
 
-            //create Demo data
-            var vehicles = new List<Vehicle>
+            try
+            {
+                //create Demo data
+                var vehicles = new List<Vehicle>
             {
                 new Vehicle
                 {
@@ -44,11 +47,16 @@ namespace MilesCarRental.BLL.Services
                     Year = 2018,
                     Color = "Black",
                     LicensePlate = "XYZ123",
-       
-                }
-            };  
 
-            return Task.FromResult(vehicles.AsEnumerable());
+                }
+            };
+
+                return Task.FromResult(vehicles.AsEnumerable());
+            }
+            catch(Exception ex)
+            {
+                throw new DataAccessException("Error getting all vehicles", ex);
+            }
            
         }
     }

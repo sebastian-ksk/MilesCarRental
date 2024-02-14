@@ -1,4 +1,5 @@
 ﻿using MilesCarRental.DAL.Context;
+using MilesCarRental.DAL.Exceptions;
 using MilesCarRental.DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -21,17 +22,36 @@ namespace MilesCarRental.BLL.Services
             new Customer { Id = 1, FirstName = "John", LastName = "Doe", Email = "john.doe@example.com" }
         };
 
-        public Task<Customer> CreateAsync(Customer customer)
+        public async Task<Customer> CreateAsync(Customer customer)
         {
-            customer.Id = _customers.Any() ? _customers.Max(c => c.Id) + 1 : 1;
-            _customers.Add(customer);
-            return Task.FromResult(customer);
+            try
+            {
+                customer.Id = _customers.Any() ? _customers.Max(c => c.Id) + 1 : 1;
+                _customers.Add(customer);
+                return await Task.FromResult(customer);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException("An error occurred while creating the customer.", ex);
+            }
         }
 
-        public Task<Customer> GetByIdAsync(int id)
+        public async Task<Customer> GetByIdAsync(int id)
         {
-            var customer = _customers.FirstOrDefault(c => c.Id == id);
-            return Task.FromResult(customer);
+            try
+            {
+                var customer = _customers.FirstOrDefault(c => c.Id == id);
+                if (customer == null)
+                {
+                    throw new DataAccessException($"Customer with ID {id} was not found.");
+                }
+                return await Task.FromResult(customer);
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException("An error occurred while retrieving the customer.", ex);
+            }
         }
+
     }
 }

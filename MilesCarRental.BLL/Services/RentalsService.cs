@@ -1,4 +1,5 @@
-﻿using MilesCarRental.DAL.Models;
+﻿using MilesCarRental.BLL.Exceptions;
+using MilesCarRental.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,26 @@ namespace MilesCarRental.BLL.Services
 
         public RentalsService(IRentalsRepository rentalsRepository)
         {
-            _rentalsRepository = rentalsRepository;
+            try {              
+                
+                _rentalsRepository = rentalsRepository;
+            }
+            catch(Exception ex)
+            {
+                  throw new BusinessException("Error creating rental service", ex);
+            }
         }
 
         public Task<Rental> CreateRentalAsync(Rental rental)
         {
-            return _rentalsRepository.CreateAsync(rental);
+            try
+            {
+                return _rentalsRepository.CreateAsync(rental);
+            }
+            catch(Exception ex)
+            {
+                throw new BusinessException("Error creating rental", ex);
+            }
         }
     }
 }

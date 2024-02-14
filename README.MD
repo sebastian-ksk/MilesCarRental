@@ -7,7 +7,8 @@ Autor: [Sebastian Castellanos  Patiño](https://github.com/sebastian-ksk)
 
 ## Desarrollo de Prueba Tecnica
 
-## 1.
+## 1.Desarrollo de Aplicación
+
 La empresa Miles Car Rental requiere el desarrollo de una aplicación para el
 manejo de la renta de sus vehículos. Inicialmente, necesitan que cuando un
 cliente realice una solicitud de un vehículo, la aplicación liste las diferentes
@@ -39,6 +40,37 @@ cada uno con propiedades específicas que reflejan los requisitos y característic
 - **Reservaciones y Alquileres a Clientes y Vehículos**: Relaciones muchos a uno, cada reserva o alquiler está vinculado a un único cliente y vehículo.
 
 ## B. Seudocódigo y Explicación de Proyecto
+
+Este proyecto se estructura en tres capas principales: API, BLL (Capa de Lógica de Negocio), y 
+DAL (Capa de Acceso a Datos), siguiendo el patrón de diseño de software de tres capas. Este enfoque
+modulariza la aplicación, separando la interfaz de usuario (UI), la lógica de negocio, y el acceso a datos, lo que facilita el mantenimiento y la escalabilidad.
+
+## Capas del Proyecto
+
+### API
+
+La capa API actúa como la interfaz entre el usuario y la lógica de negocio de la aplicación. Esta capa recibe las solicitudes de los usuarios, las procesa a través de los controladores adecuados, y devuelve las respuestas correspondientes.
+
+- **Controladores**: Cada controlador en la API gestiona un conjunto específico de rutas relacionadas con una entidad o un conjunto de operaciones lógicas. Los controladores dependen de los servicios definidos en la BLL para ejecutar la lógica de negocio.
+
+### BLL (Capa de Lógica de Negocio)
+
+La BLL contiene la lógica de negocio central de la aplicación. Esta capa procesa la entrada recibida de la capa API, aplica las reglas de negocio correspondientes, y ejecuta las operaciones necesarias, interactuando con la DAL para recuperar o almacenar datos.
+
+- **Servicios**: Los servicios en la BLL encapsulan la lógica de negocio específica de la aplicación. Cada servicio es responsable de una parte lógica del dominio de la aplicación y puede depender de uno o más repositorios de la DAL para acceder a los datos necesarios.
+
+### DAL (Capa de Acceso a Datos)
+
+La DAL gestiona la conexión con la base de datos y la manipulación de los datos. Esta capa abstrae las consultas de base de datos, proporcionando una interfaz para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sin exponer los detalles de la base de datos a las otras capas.
+
+- **Repositorios**: Los repositorios en la DAL proporcionan métodos para interactuar con la base de datos. Cada repositorio se centra en una entidad específica y ofrece operaciones para consultar y manipular sus datos. Los servicios de la BLL utilizan estos repositorios para acceder y modificar datos según la lógica de negocio.
+
+## Conexiones entre Controladores, Servicios y Repositorios
+
+- **Controladores -> Servicios**: Los controladores de la API invocan servicios de la BLL para ejecutar operaciones de negocio. Esta separación permite que la lógica de negocio se mantenga independiente de la interfaz de usuario.
+
+- **Servicios -> Repositorios**: Los servicios en la BLL utilizan repositorios de la DAL para acceder y manipular datos. Esta arquitectura permite reutilizar la lógica de acceso a datos y mantener la lógica de negocio separada de la implementación de la base de datos.
+
 
 
 ## 2. Consulta SQL

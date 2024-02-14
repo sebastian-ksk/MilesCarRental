@@ -1,4 +1,5 @@
-﻿using MilesCarRental.DAL.Context;
+﻿using MilesCarRental.BLL.Exceptions;
+using MilesCarRental.DAL.Context;
 using MilesCarRental.DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,14 @@ namespace MilesCarRental.BLL.Services
 
         public async Task<IEnumerable<Vehicle>> GetAllVehiclesAsync()
         {
-            return await _vehiclesRepository.GetAllAsync();
+            try
+            {
+                return await _vehiclesRepository.GetAllAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException("An error occurred while retrieving all vehicles.", ex);
+            }
         }
     }
 
