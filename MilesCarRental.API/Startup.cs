@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using MilesCarRental.API.Middlewares;
+using MilesCarRental.API.Utils;
 using MilesCarRental.BLL.Services;
 using MilesCarRental.DAL.Context;
 using System.Text.Json.Serialization;
@@ -18,10 +19,10 @@ namespace MilesCarRental.API
         {
 
 
-            string user = "sa";
-            string password = "123456789";
-            string server = "LOCALHOST";
-            string database = "AdsProduccion";
+            string user = EnvironmentConfig.GetEnvironmentVariable("DB_USER");
+            string password = EnvironmentConfig.GetEnvironmentVariable("DB_PASSWORD");
+            string server = EnvironmentConfig.GetEnvironmentVariable("DB_SERVER");
+            string database = EnvironmentConfig.GetEnvironmentVariable("DB_NAME");
             string connectionString = $"Server={server};Database={database};User Id={user};Password={password};TrustServerCertificate=true;";
 
             services.AddSingleton(connectionString);
