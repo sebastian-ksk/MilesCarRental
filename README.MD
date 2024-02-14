@@ -52,6 +52,12 @@ modulariza la aplicación, separando la interfaz de usuario (UI), la lógica de ne
 La capa API actúa como la interfaz entre el usuario y la lógica de negocio de la aplicación. Esta capa recibe las solicitudes de los usuarios, las procesa a través de los controladores adecuados, y devuelve las respuestas correspondientes.
 
 - **Controladores**: Cada controlador en la API gestiona un conjunto específico de rutas relacionadas con una entidad o un conjunto de operaciones lógicas. Los controladores dependen de los servicios definidos en la BLL para ejecutar la lógica de negocio.
+- **ApiResponse**: Para estandarizar las respuestas de la API, se utiliza la clase `ApiResponse<T>`. Esta clase encapsula la respuesta HTTP y proporciona una estructura coherente para las respuestas del servidor.
+
+- `Success`: Un booleano que indica si la operación fue exitosa o no.
+- `Message`: Un mensaje descriptivo que acompaña a la respuesta.
+- `Data`: Los datos devueltos por el servidor (puede ser un objeto o una colección).
+- `Errors`: Una lista de mensajes de error, si la operación no fue exitosa.
 
 ### BLL (Capa de Lógica de Negocio)
 
