@@ -9,6 +9,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilesCarRental.BLL", "Miles
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilesCarRental.DAL", "MilesCarRental.DAL\MilesCarRental.DAL.csproj", "{D29D6087-71C3-4A78-93E4-4E0D92D631D1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F7D6E54E-0B73-447E-888E-95EE572047F9}"
+	ProjectSection(SolutionItems) = preProject
+		README.MD = README.MD
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{D5D0928C-6130-4E25-A156-347C24F8B717}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\diagrama_de_clases.png = ..\..\..\Desktop\diagrama_de_clases.png
+	EndProjectSection
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MilesCarRental.SQL", "MilesCarRental.SQL\MilesCarRental.SQL.sqlproj", "{BC0EFE86-0C5A-4976-BFB0-72A6256851C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +39,12 @@ Global
 		{D29D6087-71C3-4A78-93E4-4E0D92D631D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D29D6087-71C3-4A78-93E4-4E0D92D631D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D29D6087-71C3-4A78-93E4-4E0D92D631D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC0EFE86-0C5A-4976-BFB0-72A6256851C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC0EFE86-0C5A-4976-BFB0-72A6256851C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC0EFE86-0C5A-4976-BFB0-72A6256851C4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BC0EFE86-0C5A-4976-BFB0-72A6256851C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC0EFE86-0C5A-4976-BFB0-72A6256851C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC0EFE86-0C5A-4976-BFB0-72A6256851C4}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
