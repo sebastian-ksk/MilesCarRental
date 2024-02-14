@@ -26,6 +26,7 @@ namespace MilesCarRental.API.Controllers
 
         // GET: api/customers/{id}
         [HttpGet("{id}")]
+        [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetCustomer(int id)
         {
             var customer = await _customersService.GetCustomerByIdAsync(id);

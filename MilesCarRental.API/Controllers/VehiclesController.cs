@@ -17,6 +17,7 @@ namespace MilesCarRental.API.Controllers
 
         // GET: api/vehicles
         [HttpGet]
+        [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetAvailableVehicles()
         {
             var vehicles = await _vehiclesService.GetAllVehiclesAsync();

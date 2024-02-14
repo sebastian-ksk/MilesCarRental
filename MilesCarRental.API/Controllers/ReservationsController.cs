@@ -36,6 +36,7 @@ namespace MilesCarRental.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [ResponseCache(Duration = 60)]
         public async Task<IActionResult> GetReservation(int id)
         {
             var reservation = await _reservationsService.GetReservationAsync(id);
