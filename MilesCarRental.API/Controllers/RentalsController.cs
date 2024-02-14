@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MilesCarRental.BLL.Services;
+using MilesCarRental.DAL.Models;
 
 namespace MilesCarRental.API.Controllers
 {
@@ -7,10 +9,18 @@ namespace MilesCarRental.API.Controllers
     [ApiController]
     public class RentalsController : ControllerBase
     {
-        [HttpPost]
-        public IActionResult CreateRental([FromBody] string rental)
+        private readonly IRentalsService _rentalsService;
+
+        public RentalsController(IRentalsService rentalsService)
         {
-            return Ok(/* lógica para crear un alquiler */);
+            _rentalsService = rentalsService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateRental([FromBody] Rental rental)
+        {
+            var createdRental = await _rentalsService.CreateRentalAsync(rental);
+            return Ok(createdRental);
         }
     }
 }

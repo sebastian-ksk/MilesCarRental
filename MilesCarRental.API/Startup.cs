@@ -51,9 +51,13 @@ namespace MilesCarRental.API
 
             services.AddScoped<IVehiclesService, VehiclesService>();
             services.AddScoped<IVehiclesRepository,VehiclesRepository>();
-            
-            services.AddScoped<IReservationsRepository, ReservationsRepository>();
+
             services.AddScoped<IReservationsService, ReservationsService>();
+            services.AddScoped<IReservationsRepository, ReservationsRepository>();
+           
+            services.AddScoped<IRentalsService, RentalsService>();
+            services.AddScoped<IRentalsRepository, RentalsRepository>();
+            
 
         }
 
